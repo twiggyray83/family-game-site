@@ -1,4 +1,5 @@
 using FamilyGameService.DTOs;
+using FamilyGameService.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FamilyGameService.Controllers
@@ -15,11 +16,27 @@ namespace FamilyGameService.Controllers
         }
 
         [HttpGet(Name = "GetUsers")]
-        public IEnumerable<GetUserResponse> Get()
+        public IEnumerable<PlayerResponse> Get()
         {
-            var users = new List<GetUserResponse>();
-            users.Add(new GetUserResponse() { Id = 1, PlayerName = "hello" });
-            return users;
+            using (var db = new postgresContext())
+            {
+                var players = new List<PlayerResponse>();
+                return db.Players.Select(p => new PlayerResponse { Id = p.Id, Playername = p.Playername }).ToList();
+            }
         }
+
+        [HttpPost(Name = "CreateUser")]
+        public int POST(string playerName)
+        {
+            var player = new Models.Player { Playername = playerName };
+            using (var db = new postgresContext())
+            {
+                db.Players.Add(player);
+                db.SaveChanges();
+                return player.Id;
+            }
+        }
+
+
     }
 }
