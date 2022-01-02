@@ -27,7 +27,7 @@ namespace FamilyGameService.Controllers
         }
 
         [HttpPost(Name = "CreateGame")]
-        public int POST(string gameName)
+        public int POST([FromBody] string gameName)
         {
             var game = new Models.Game { Gamename = gameName };
             using (var db = _context)

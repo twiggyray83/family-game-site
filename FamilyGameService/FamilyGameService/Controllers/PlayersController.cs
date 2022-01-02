@@ -28,7 +28,7 @@ namespace FamilyGameService.Controllers
         }
 
         [HttpPost(Name = "CreateUser")]
-        public int POST(string playerName)
+        public int POST([FromBody] string playerName)
         {
             var player = new Models.Player { Playername = playerName };
             using (var db = _context)
