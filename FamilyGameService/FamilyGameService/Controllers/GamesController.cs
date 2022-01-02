@@ -9,10 +9,17 @@ namespace FamilyGameService.Controllers
     [ApiController]
     public class GamesController : ControllerBase
     {
+        private readonly postgresContext _context;
+        
+        public GamesController(postgresContext context)
+        {
+            _context = context;
+        }
+
         [HttpGet(Name = "GetGames")]
         public IEnumerable<GameResponse> Get()
         {
-            using (var db = new postgresContext())
+            using (var db = _context)
             {
                 var players = new List<GameResponse>();
                 return db.Games.Select(g => new GameResponse { Id = g.Id, Gamename = g.Gamename}).ToList();
@@ -23,7 +30,7 @@ namespace FamilyGameService.Controllers
         public int POST(string gameName)
         {
             var game = new Models.Game { Gamename = gameName };
-            using (var db = new postgresContext())
+            using (var db = _context)
             {
                 db.Games.Add(game);
                 db.SaveChanges();

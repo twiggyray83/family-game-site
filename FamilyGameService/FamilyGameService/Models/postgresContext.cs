@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
+using ConfigurationManager = Microsoft.Extensions.Configuration.ConfigurationManager;
 
 namespace FamilyGameService.Models
 {
     public partial class postgresContext : DbContext
     {
-        public postgresContext()
-        {
-        }
-
         public postgresContext(DbContextOptions<postgresContext> options)
             : base(options)
         {
@@ -23,16 +22,7 @@ namespace FamilyGameService.Models
         public virtual DbSet<Playergame> Playergames { get; set; } = null!;
         public virtual DbSet<Tournament> Tournaments { get; set; } = null!;
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseNpgsql("Host=192.168.86.28:5432;Database=postgres;UserName=postgres;Password=m@cAr0n1");
-            }
-        }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
+                protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasPostgresExtension("pg_catalog", "adminpack");
 

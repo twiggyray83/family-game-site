@@ -1,11 +1,16 @@
-var builder = WebApplication.CreateBuilder(args);
+using FamilyGameService.Models;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
+var PotgresConnectionString = builder.Configuration["PotgresConnectionString"];
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddDbContext<postgresContext>(options => options.UseNpgsql(PotgresConnectionString));
 
 var app = builder.Build();
 
