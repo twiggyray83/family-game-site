@@ -8,7 +8,6 @@ namespace FamilyGameService.Models
         public Tournament()
         {
             Bonus = new HashSet<Bonu>();
-            Playergames = new HashSet<Playergame>();
         }
 
         public int Id { get; set; }
@@ -17,6 +16,5 @@ namespace FamilyGameService.Models
 
         public virtual Player? WinnerNavigation { get; set; }
         public virtual ICollection<Bonu> Bonus { get; set; }
-        public virtual ICollection<Playergame> Playergames { get; set; }
     }
 }

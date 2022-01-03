@@ -114,11 +114,6 @@ namespace FamilyGameService.Models
                     .WithMany(p => p.Playergames)
                     .HasForeignKey(d => d.Playerid)
                     .HasConstraintName("fk_pg_player");
-
-                entity.HasOne(d => d.Tournament)
-                    .WithMany(p => p.Playergames)
-                    .HasForeignKey(d => d.Tournamentid)
-                    .HasConstraintName("fk_pg_tournament");
             });
 
             modelBuilder.Entity<Tournament>(entity =>

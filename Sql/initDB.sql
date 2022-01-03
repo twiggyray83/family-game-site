@@ -58,8 +58,5 @@ create table playergames(
         REFERENCES players(id),
     CONSTRAINT fk_pg_game
         FOREIGN KEY(gameid) 
-        REFERENCES games(id),
-    CONSTRAINT fk_pg_tournament
-        FOREIGN KEY(tournamentid) 
-        REFERENCES tournaments(id)
+        REFERENCES games(id)
 );
