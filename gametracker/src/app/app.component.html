@@ -1,10 +1,34 @@
-
-<header id= "mainheader"> 
-   <span class= "header-text">Family Game Tracker</span>
-    <nav>
-        <ul>
-            <li><a href="./">Home</a></li>
-            <li><a href="./admin">Admin</a></li>
-        </ul>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+</head>
+<header>
+    <a href="#main-menu"
+       id="main-menu-toggle"
+       class="menu-toggle"
+       aria-label="Open main menu">
+      <span class="sr-only">Open main menu</span>
+      <span class="fa fa-bars"></span>
+    </a>
+    
+    <h1 class="logo">Family Game Tracker</h1>
+    
+    <nav id="main-menu" class="main-menu" aria-label="Main menu">
+      <a href="#main-menu-toggle"
+         id="main-menu-close"
+         class="menu-close"
+         aria-label="Close main menu">
+        <span class="sr-only">Close main menu</span>
+        <span class="fa fa-times-circle"></span>
+      </a>
+      <ul>
+        <li><a href="./">Home</a></li>
+        <li><a href="./admin">Admin</a></li>
+      </ul>
     </nav>
-</header>
+    <a href="#main-menu-toggle"
+       class="backdrop"
+       tabindex="-1"></a>
+  </header>
+ 
+ 
